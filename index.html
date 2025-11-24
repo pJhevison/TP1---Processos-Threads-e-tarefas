@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simulador Didático de Processos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Simulador Didático de Processos e Threads</h1>
+    <p>
+      Clique nos aplicativos para criar processos e use os botões de controle
+      para ver os estados: Novo → Pronto → Executando → Bloqueado → Finalizado.
+    </p>
+  </header>
+
+  <main>
+    <!-- Lançador de "aplicativos" -->
+    <section class="card" id="user-section">
+      <h2>Espaço do Usuário (Aplicativos)</h2>
+      <p>Cada aplicativo aberto vira um processo no sistema operacional.</p>
+      <div class="app-buttons">
+        <button onclick="criarProcesso('Música')">Abrir Música</button>
+        <button onclick="criarProcesso('Navegador')">Abrir Navegador</button>
+        <button onclick="criarProcesso('Editor')">Abrir Editor de Texto</button>
+      </div>
+    </section>
+
+    <!-- Diagrama de estados -->
+    <section class="card" id="states-section">
+      <h2>Estados dos Processos</h2>
+      <p>
+        As caixas representam processos. Elas se movem entre os estados
+        conforme você usa os controles do kernel.
+      </p>
+      <div class="state-columns">
+        <div class="state-column">
+          <h3>Novo</h3>
+          <div id="lista-novo" class="state-list"></div>
+        </div>
+        <div class="state-column">
+          <h3>Pronto (Fila de Prontos)</h3>
+          <div id="lista-pronto" class="state-list"></div>
+        </div>
+        <div class="state-column">
+          <h3>Executando (CPU)</h3>
+          <div id="lista-executando" class="state-list"></div>
+        </div>
+        <div class="state-column">
+          <h3>Bloqueado (I/O)</h3>
+          <div id="lista-bloqueado" class="state-list"></div>
+        </div>
+        <div class="state-column">
+          <h3>Finalizado</h3>
+          <div id="lista-finalizado" class="state-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kernel / CPU -->
+    <section class="card" id="kernel-section">
+      <h2>Kernel &amp; CPU</h2>
+
+      <div class="controls">
+        <button onclick="proximoPasso()">Próximo passo</button>
+        <button onclick="bloquearProcesso()">Bloquear processo em execução (I/O)</button>
+        <button onclick="concluirIO()">Concluir I/O</button>
+        <button onclick="finalizarProcesso()">Finalizar processo em execução</button>
+        <button onclick="resetSimulacao()">Resetar simulação</button>
+      </div>
+
+      <div class="mode-toggle">
+        <span><strong>Modo da CPU:</strong></span>
+        <button onclick="setNumCores(1)">1 núcleo (concorrência)</button>
+        <button onclick="setNumCores(2)">2 núcleos (paralelismo)</button>
+      </div>
+
+      <div class="cpu-area">
+        <h3>Visão das CPUs</h3>
+        <p><strong>Modo atual:</strong> <span id="cpu-mode-label">1 núcleo (concorrência)</span></p>
+        <div class="cpu-cores">
+          <div class="cpu-core">
+            <h4>CPU 1</h4>
+            <p id="cpu1-status">Nenhum processo em execução.</p>
+          </div>
+          <div class="cpu-core" id="cpu2-container">
+            <h4>CPU 2</h4>
+            <p id="cpu2-status">Nenhum processo em execução.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detalhes do processo selecionado / threads + mini-execução -->
+    <section class="card" id="threads-section">
+      <h2>Processo selecionado &amp; Threads</h2>
+      <p>
+        Clique em um processo em qualquer coluna para selecioná-lo.
+        Um processo pode ter várias threads (vários fluxos de execução).
+      </p>
+      <div id="detalhes-processo">
+        <p>Nenhum processo selecionado.</p>
+      </div>
+
+      <div id="acoes-processo" class="mini-actions">
+        <p>
+          Selecione um processo para ver ações específicas
+          (tocar música, abrir aba, digitar texto, etc.).
+        </p>
+      </div>
+
+      <button id="btn-add-thread" onclick="adicionarThread()" disabled>
+        Adicionar thread ao processo selecionado
+      </button>
+    </section>
+
+    <!-- Log de eventos -->
+    <section class="card" id="log-section">
+      <h2>Log do Sistema (Explicação passo a passo)</h2>
+      <div id="log-container"></div>
+    </section>
+  </main>
+
+  <footer>
+    <small>
+      Simulação simplificada para fins educacionais: ilustra conceitos de processos,
+      estados, fila de prontos, bloqueio por I/O, threads, concorrência e paralelismo.
+    </small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

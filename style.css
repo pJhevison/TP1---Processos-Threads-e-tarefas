@@ -1,0 +1,242 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f2f4ff;
+  color: #1f2933;
+  padding: 16px;
+}
+
+header {
+  margin-bottom: 16px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+header p {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+
+.card h2 {
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.app-buttons {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+button {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.state-columns {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.state-column h3 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.state-list {
+  min-height: 80px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #f9fafb;
+  border-radius: 6px;
+  padding: 6px;
+  border: 1px dashed #cbd5e1;
+}
+
+.process-card {
+  padding: 4px 6px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.process-card span {
+  font-family: "Consolas", "Fira Code", monospace;
+}
+
+.process-card.selected {
+  outline: 2px solid #f97316;
+}
+
+.process-music {
+  background: #dbeafe;
+  border: 1px solid #60a5fa;
+}
+
+.process-browser {
+  background: #dcfce7;
+  border: 1px solid #4ade80;
+}
+
+.process-editor {
+  background: #fee2e2;
+  border: 1px solid #f87171;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+/* seletor de modo 1 núcleo / 2 núcleos */
+.mode-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.mode-toggle span {
+  color: #111827;
+}
+
+.cpu-area {
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.cpu-cores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.cpu-core {
+  flex: 1 1 200px;
+  background: #f9fafb;
+  border-radius: 6px;
+  padding: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.cpu-core h4 {
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+#cpu1-status,
+#cpu2-status {
+  font-size: 0.9rem;
+}
+
+#detalhes-processo {
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+}
+
+#log-container {
+  margin-top: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #0f172a;
+  color: #e5e7eb;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-family: "Consolas", "Fira Code", monospace;
+}
+
+.log-entry {
+  margin-bottom: 2px;
+}
+
+footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Mini painel de ações específicas do app (música/aba/digitar/etc.) */
+.mini-actions {
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  font-size: 0.85rem;
+}
+
+.mini-actions button {
+  margin-top: 6px;
+}
+
+.mini-desc {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+/* CPU 2 começa escondida (só aparece no modo paralelismo) */
+#cpu2-container {
+  display: none;
+}
